@@ -112,9 +112,6 @@ export default class CovidExporter {
                             continue
                     }
 
-                    if (((stat.country == "USA") || (stat.country == "UK")) && ~stat.province)
-                        continue
-
                     ifm += `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')
                         .replace(/^USA$/, 'US')
                         .replace(/^UK$/, 'United_Kingdom')} `.replace(/[a-z]+=,/g, '')
