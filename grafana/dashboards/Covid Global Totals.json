@@ -68,7 +68,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "5m"
               ],
               "type": "time"
             },
@@ -150,7 +150,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "5m"
               ],
               "type": "time"
             },
@@ -920,7 +920,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "5m"
               ],
               "type": "time"
             },
@@ -1002,7 +1002,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "5m"
               ],
               "type": "time"
             },
@@ -1760,5 +1760,5 @@
   "variables": {
     "list": []
   },
-  "version": 14
+  "version": 15
 }
