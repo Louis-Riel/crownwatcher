@@ -1,0 +1,94 @@
+version: "3.7"
+services:
+  dashboard:
+    image: grafana/grafana
+    user: 963:20000
+    container_name: dashboard
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/serverconfig:/var/lib/grafana
+    restart: unless-stopped
+    ports:
+      - 80:3000
+    depends_on:
+      - influxdb
+    healthcheck:
+      test: [ "CMD-SHELL", "ls -l /proc/1/fd | grep -q socket" ]
+      interval: 33s
+      timeout: 1s
+      retries: 10
+    networks:
+      - grafana
+      - influxdb
+
+  covid_exporter:
+    build:
+      args:
+        UID: 965
+        GID: 1001
+        user: "sicko"
+      context: ./covidexporter
+    container_name: covid_exporter
+    environment:
+      TZ: "Canada/Eastern"
+    depends_on:
+      - influxdb
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    command: "npm rum start"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: [ "CMD-SHELL", "ps -ef | egrep -q '[0-9]{2} node'"  ]
+      interval: 30s
+      timeout: 1s
+      retries: 10
+    networks:
+      - influxdb
+
+  influxdb:
+    image: influxdb:latest
+    user: 964:1001
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -s http://influxdb:8086/metrics | wc -c"  ]
+      interval: 30s
+      timeout: 1s
+      retries: 10
+    restart: unless-stopped
+    container_name: influxdb
+    environment:
+      - INFLUXDB_DATA_ENGINE=tsm1
+      - INFLUXDB_REPORTING_DISABLED=false
+      - INFLUXDB_DB=telegraf
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./influxdb:/var/lib/influxdb
+    networks:
+      - influxdb
+
+#  telegraf:
+#    image: telegraf:latest
+#    user: "20400:967"   #967 docker group
+#    restart: unless-stopped
+#    container_name: telegraf
+#    cap_add:
+#      - SYS_TIME
+#    environment: 
+#      - OST_PROC=/host/proc
+#    depends_on:
+#      - influxdb
+#    links:
+#      - influxdb
+#    volumes:
+#      - ./system/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /proc:/host/proc:ro
+#    networks:
+#      - influxdb
+
+networks:
+  grafana:
+  influxdb:

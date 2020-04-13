@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+serverconfig
+influxdb
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

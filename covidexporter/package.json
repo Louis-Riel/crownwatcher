@@ -1,0 +1,17 @@
+{
+    "name": "crownwatcher",
+    "version": "0.0.1",
+    "description": "Exports Covid19 data in realtime to an InfluxDB/Grafana getup",
+    "main": "server.js",
+    "type": "module",
+    "repository": "https://github.com/Louis-Riel/crownwatcher",
+    "license": "(Apache-2.0)",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node --experimental-modules  ./server.js"
+    },
+    "keywords": [
+        "covid19",
+        "corona"
+    ]
+}
