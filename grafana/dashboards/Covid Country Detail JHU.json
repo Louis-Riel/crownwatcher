@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 6,
-  "iteration": 1586753500216,
+  "iteration": 1586785260534,
   "links": [],
   "panels": [
     {
@@ -476,7 +476,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -618,7 +618,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -760,7 +760,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -904,7 +904,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -942,7 +942,7 @@
               },
               {
                 "params": [
-                  "1d"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -1054,7 +1054,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -1092,7 +1092,7 @@
               },
               {
                 "params": [
-                  "1d"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -1204,7 +1204,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -1446,7 +1446,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -1604,7 +1604,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -1744,7 +1744,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -1902,7 +1902,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -2002,13 +2002,13 @@
       "id": 83,
       "panels": [],
       "repeat": null,
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 20,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "title": "$country",
@@ -2053,14 +2053,14 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 4,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "targets": [
@@ -2151,14 +2151,14 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 5,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "targets": [
@@ -2249,14 +2249,14 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 6,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "targets": [
@@ -2339,14 +2339,14 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 10,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "strokeWidth": 1,
@@ -2356,7 +2356,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
@@ -2388,7 +2388,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -2444,14 +2444,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 2,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -2464,7 +2464,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -2589,14 +2589,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 15,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -2609,7 +2609,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -2734,14 +2734,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 8,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -2754,7 +2754,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -2881,14 +2881,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 7,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -2901,7 +2901,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -2939,7 +2939,7 @@
               },
               {
                 "params": [
-                  "1d"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -3034,14 +3034,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 12,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -3054,7 +3054,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -3092,7 +3092,7 @@
               },
               {
                 "params": [
-                  "1d"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -3187,14 +3187,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 14,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -3207,7 +3207,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -3332,14 +3332,14 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 11,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "strokeWidth": 1,
@@ -3349,7 +3349,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
@@ -3381,7 +3381,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
@@ -3435,14 +3435,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 82,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -3455,7 +3455,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -3596,14 +3596,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 16,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -3616,7 +3616,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -3739,14 +3739,14 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 18,
       "repeatedByRow": true,
       "scopedVars": {
         "country": {
           "selected": true,
-          "text": "Italy",
-          "value": "Italy"
+          "text": "US",
+          "value": "US"
         }
       },
       "seriesOverrides": [],
@@ -3759,7 +3759,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -3900,2025 +3900,7 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 13,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "Italy",
-          "value": "Italy"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "todayCases"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Today",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 44
-      },
-      "id": 99,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 20,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "title": "$country",
-      "type": "row"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 0,
-        "y": 45
-      },
-      "id": 100,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 4,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Infected",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 5,
-        "y": 45
-      },
-      "id": 101,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 5,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Deaths",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 10,
-        "y": 45
-      },
-      "id": 102,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 6,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Recovered",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 10,
-        "w": 9,
-        "x": 15,
-        "y": 45
-      },
-      "id": 103,
-      "interval": null,
-      "legend": {
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Right side",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 10,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Infected",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 0,
-        "y": 48
-      },
-      "hiddenSeries": false,
-      "id": 104,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 2,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 5,
-        "y": 48
-      },
-      "hiddenSeries": false,
-      "id": 105,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 15,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 10,
-        "y": 48
-      },
-      "hiddenSeries": false,
-      "id": 106,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 8,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 0,
-        "y": 52
-      },
-      "hiddenSeries": false,
-      "id": 107,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 7,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 5,
-        "y": 53
-      },
-      "hiddenSeries": false,
-      "id": 108,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 12,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 10,
-        "y": 53
-      },
-      "hiddenSeries": false,
-      "id": 109,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 14,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 11,
-        "w": 9,
-        "x": 15,
-        "y": 55
-      },
-      "id": 110,
-      "interval": null,
-      "legend": {
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Right side",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 11,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Dead",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 0,
-        "y": 56
-      },
-      "hiddenSeries": false,
-      "id": 111,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 82,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$col",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "critical"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "critical"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 5,
-        "y": 59
-      },
-      "hiddenSeries": false,
-      "id": 112,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 16,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "todayDeaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Today",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 10,
-        "y": 59
-      },
-      "hiddenSeries": false,
-      "id": 113,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "US",
-          "value": "US"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$col",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "casesPerOneMillion"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Cases Per Mil"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "deathsPerOneMillion"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Deaths Per Mil"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 0,
-        "y": 61
-      },
-      "hiddenSeries": false,
-      "id": 114,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
+      "repeatIteration": 1586785260534,
       "repeatPanelId": 13,
       "repeatedByRow": true,
       "scopedVars": {
@@ -5938,2025 +3920,7 @@
           "groupBy": [
             {
               "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "todayCases"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Today",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 66
-      },
-      "id": 115,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 20,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "title": "$country",
-      "type": "row"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 0,
-        "y": 67
-      },
-      "id": 116,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 4,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Infected",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 5,
-        "y": 67
-      },
-      "id": 117,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 5,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Deaths",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 10,
-        "y": 67
-      },
-      "id": 118,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 6,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Recovered",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 10,
-        "w": 9,
-        "x": 15,
-        "y": 67
-      },
-      "id": 119,
-      "interval": null,
-      "legend": {
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Right side",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 10,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Infected",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 0,
-        "y": 70
-      },
-      "hiddenSeries": false,
-      "id": 120,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 2,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "confirmed"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 5,
-        "y": 70
-      },
-      "hiddenSeries": false,
-      "id": 121,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 15,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 10,
-        "y": 70
-      },
-      "hiddenSeries": false,
-      "id": 122,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 8,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 0,
-        "y": 74
-      },
-      "hiddenSeries": false,
-      "id": 123,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 7,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 5,
-        "y": 75
-      },
-      "hiddenSeries": false,
-      "id": 124,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 12,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 10,
-        "y": 75
-      },
-      "hiddenSeries": false,
-      "id": 125,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 14,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1d"
-                ],
-                "type": "derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 11,
-        "w": 9,
-        "x": 15,
-        "y": 77
-      },
-      "id": 126,
-      "interval": null,
-      "legend": {
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Right side",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 11,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "jhu_covid",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Dead",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 0,
-        "y": 78
-      },
-      "hiddenSeries": false,
-      "id": 127,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 82,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$col",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "critical"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "critical"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "active"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 5,
-        "y": 81
-      },
-      "hiddenSeries": false,
-      "id": 128,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 16,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "province"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"confirmed\") FROM \"jhu_covid\" WHERE (\"country\" =~ /^$country$/) AND $timeFilter GROUP BY time(1h), \"province\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "todayDeaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Today",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 5,
-        "x": 10,
-        "y": 81
-      },
-      "hiddenSeries": false,
-      "id": 129,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$col",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "casesPerOneMillion"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Cases Per Mil"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "deathsPerOneMillion"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Deaths Per Mil"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "country",
-              "operator": "=~",
-              "value": "/^$country$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 5,
-        "x": 0,
-        "y": 83
-      },
-      "hiddenSeries": false,
-      "id": 130,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1586753500216,
-      "repeatPanelId": 13,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "country": {
-          "selected": true,
-          "text": "United_Kingdom",
-          "value": "United_Kingdom"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_province",
-          "groupBy": [
-            {
-              "params": [
-                "1h"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -8054,12 +4018,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "Canada + Italy + US + United_Kingdom",
+          "text": "Canada + US",
           "value": [
             "Canada",
-            "Italy",
-            "US",
-            "United_Kingdom"
+            "US"
           ]
         },
         "datasource": "InfluxDB",
@@ -8492,7 +4454,7 @@
             "value": "Israel"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "Italy",
             "value": "Italy"
           },
@@ -8947,7 +4909,7 @@
             "value": "United_Arab_Emirates"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "United_Kingdom",
             "value": "United_Kingdom"
           },
@@ -9007,6 +4969,60 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "auto": true,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "selected": false,
+          "text": "1d",
+          "value": "1d"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "time_resolution",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval_time_resolution"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": true,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "2d",
+            "value": "2d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          }
+        ],
+        "query": "5m,1h,1d,2d,7d,15d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
       }
     ]
   },
@@ -9034,5 +5050,5 @@
   "variables": {
     "list": []
   },
-  "version": 21
+  "version": 24
 }
