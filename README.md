@@ -3,6 +3,10 @@ This docker getup will allows you to monitor in real time the Corona virus infor
 
 - Install and upgrate docker and docker-compose
 - Clone this repo onto a folder with enough space to hold a database
+- Dependent on your skill set, here where where you either:
+    - If you are running linux, chmod -R 777 your project folder
+    - If you are running Windows, right click the project filder and grant all to everyone recursive
+    - For extra points, look at the docker-compose and create the accounts matching the used GID and UID
 - Go to that folder and type docker-compose up -d, or however you like to start your containers
 - Point your favorite browser over to http://localhost/dashboard and login as admin/admin and change that pass
 - Create a new datasource of type InfluxDB, use http://influxdb:8086 for the URL and telegraf for the database name 
@@ -14,6 +18,11 @@ This docker getup will allows you to monitor in real time the Corona virus infor
 - Copy/paste the content of a [dashboard](grafana/dashboards) in there and click Load
 
 On the first run, historical statistics will be imported. The imported historical data will be at a resolution of 1 day and less detailed than the live data collected whilst thing is chugging along. Here is a screenshot of Grafana while the historical data is being imported
+
+After all that is done, you need to get the pie chart plugin instlled in Grafana. Do do that, run:
+``` bash
+sudo docker exec -it dashboard grafana-cli plugins install grafana-piechart-panel
+```
 
 Here is Grafana whilst the historical data is being loaded
 ![](images/stats_loading.png)
