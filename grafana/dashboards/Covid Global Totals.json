@@ -16,12 +16,39 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1586785378855,
+  "iteration": 1587083125462,
   "links": [],
   "panels": [
     {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "panels": [],
+      "repeat": "stat",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
       "cacheTimeout": null,
       "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 1
+      },
       "id": 5,
       "links": [],
       "options": {
@@ -64,6 +91,13 @@
         "orientation": "horizontal"
       },
       "pluginVersion": "6.7.1",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
       "targets": [
         {
           "groupBy": [
@@ -89,7 +123,7 @@
             [
               {
                 "params": [
-                  "cases"
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -104,89 +138,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Cases",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 6,
-        "y": 0
-      },
-      "id": 6,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Deaths",
+      "title": "",
       "type": "stat"
     },
     {
@@ -202,95 +154,10 @@
       "fontSize": "80%",
       "format": "none",
       "gridPos": {
-        "h": 12,
-        "w": 6,
-        "x": 12,
-        "y": 0
-      },
-      "id": 13,
-      "interval": null,
-      "legend": {
-        "header": "",
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Under graph",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_country",
-          "groupBy": [
-            {
-              "params": [
-                "$time_resolution"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "country"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "cases"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Cases",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "decimals": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 12,
+        "h": 13,
         "w": 6,
         "x": 18,
-        "y": 0
+        "y": 1
       },
       "id": 18,
       "interval": null,
@@ -307,6 +174,13 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
       "strokeWidth": 1,
       "targets": [
         {
@@ -340,13 +214,13 @@
             [
               {
                 "params": [
-                  "deaths"
+                  "$stat"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "first"
               }
             ]
           ],
@@ -355,7 +229,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Deaths",
+      "title": "",
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
@@ -368,10 +242,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 6,
+        "h": 5,
+        "w": 10,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "hiddenSeries": false,
       "hideTimeOverride": false,
@@ -396,6 +270,13 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -434,13 +315,13 @@
             [
               {
                 "params": [
-                  "cases"
+                  "$stat"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "first"
               }
             ]
           ],
@@ -497,16 +378,18 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 3
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 4
       },
       "hiddenSeries": false,
-      "id": 7,
+      "id": 22,
       "legend": {
         "avg": false,
         "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
         "max": false,
         "min": false,
         "show": false,
@@ -523,6 +406,13 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -559,13 +449,25 @@
             [
               {
                 "params": [
-                  "deaths"
+                  "$stat"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "first"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
               }
             ]
           ],
@@ -596,8 +498,8 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
-          "show": false
+          "min": "0",
+          "show": true
         },
         {
           "format": "short",
@@ -623,9 +525,9 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 6,
+        "w": 10,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "hiddenSeries": false,
       "id": 3,
@@ -650,6 +552,13 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -686,7 +595,806 @@
             [
               {
                 "params": [
-                  "cases"
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "first"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 23,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "active",
+          "value": "active"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 31,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 15
+      },
+      "id": 32,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": null,
+      "decimals": null,
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 18,
+        "y": 15
+      },
+      "id": 33,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 34,
+      "interval": "5m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 35,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 23
+      },
+      "hiddenSeries": false,
+      "id": 36,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -756,12 +1464,12 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 6,
-        "x": 6,
-        "y": 7
+        "w": 8,
+        "x": 10,
+        "y": 23
       },
       "hiddenSeries": false,
-      "id": 8,
+      "id": 37,
       "legend": {
         "avg": false,
         "current": false,
@@ -783,6 +1491,16 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "cases",
+          "value": "cases"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -819,13 +1537,19 @@
             [
               {
                 "params": [
-                  "deaths"
+                  "$stat"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
               },
               {
                 "params": [
@@ -845,7 +1569,7 @@
       "title": "",
       "tooltip": {
         "shared": true,
-        "sort": 2,
+        "sort": 1,
         "value_type": "individual"
       },
       "type": "graph",
@@ -858,11 +1582,10 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
           "format": "none",
           "label": null,
           "logBase": 1,
-          "max": null,
+          "max": "0",
           "min": null,
           "show": true
         },
@@ -883,94 +1606,37 @@
     {
       "datasource": null,
       "gridPos": {
-        "h": 3,
-        "w": 6,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 12
+        "y": 28
       },
-      "id": 9,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.7.1",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "tests"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": []
+      "id": 38,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
         }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Tests",
-      "type": "stat"
+      },
+      "title": "$stat",
+      "type": "row"
     },
     {
+      "cacheTimeout": null,
       "datasource": null,
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 6,
-        "y": 12
+        "w": 18,
+        "x": 0,
+        "y": 29
       },
-      "id": 14,
+      "id": 39,
+      "links": [],
       "options": {
         "colorMode": "value",
         "fieldOptions": {
@@ -978,7 +1644,16 @@
             "lastNotNull"
           ],
           "defaults": {
-            "mappings": [],
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -991,16 +1666,27 @@
                   "value": 80
                 }
               ]
-            }
+            },
+            "unit": "none"
           },
           "overrides": [],
           "values": false
         },
         "graphMode": "area",
         "justifyMode": "auto",
-        "orientation": "auto"
+        "orientation": "horizontal"
       },
       "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
       "targets": [
         {
           "groupBy": [
@@ -1026,7 +1712,7 @@
             [
               {
                 "params": [
-                  "recovered"
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -1041,7 +1727,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Recovered",
+      "title": "",
       "type": "stat"
     },
     {
@@ -1057,97 +1743,12 @@
       "fontSize": "80%",
       "format": "none",
       "gridPos": {
-        "h": 11,
-        "w": 6,
-        "x": 12,
-        "y": 12
-      },
-      "id": 20,
-      "interval": null,
-      "legend": {
-        "header": "",
-        "percentage": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Under graph",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "pie",
-      "strokeWidth": 1,
-      "targets": [
-        {
-          "alias": "$tag_country",
-          "groupBy": [
-            {
-              "params": [
-                "$time_resolution"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "country"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "tests"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Tests",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "50%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": null,
-      "decimals": null,
-      "fontSize": "80%",
-      "format": "none",
-      "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 6,
         "x": 18,
-        "y": 12
+        "y": 29
       },
-      "id": 17,
+      "id": 40,
       "interval": null,
       "legend": {
         "header": "",
@@ -1162,6 +1763,16 @@
       "maxDataPoints": 3,
       "nullPointMode": "connected",
       "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
       "strokeWidth": 1,
       "targets": [
         {
@@ -1195,7 +1806,7 @@
             [
               {
                 "params": [
-                  "recovered"
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -1210,7 +1821,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Recovered",
+      "title": "",
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
@@ -1223,13 +1834,15 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 6,
+        "h": 5,
+        "w": 10,
         "x": 0,
-        "y": 15
+        "y": 32
       },
       "hiddenSeries": false,
-      "id": 10,
+      "hideTimeOverride": false,
+      "id": 41,
+      "interval": "5m",
       "legend": {
         "avg": false,
         "current": false,
@@ -1249,6 +1862,16 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -1279,13 +1902,15 @@
           "measurement": "covidapi",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "tests"
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -1348,138 +1973,13 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 15
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 32
       },
       "hiddenSeries": false,
-      "id": 15,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_country",
-          "groupBy": [
-            {
-              "params": [
-                "$time_resolution"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "country"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "covidapi",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "recovered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 0,
-        "y": 19
-      },
-      "hiddenSeries": false,
-      "id": 11,
+      "id": 42,
       "legend": {
         "avg": false,
         "current": false,
@@ -1501,6 +2001,16 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -1537,7 +2047,156 @@
             [
               {
                 "params": [
-                  "tests"
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 37
+      },
+      "hiddenSeries": false,
+      "id": 43,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -1606,13 +2265,13 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 19
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 37
       },
       "hiddenSeries": false,
-      "id": 16,
+      "id": 44,
       "legend": {
         "avg": false,
         "current": false,
@@ -1634,6 +2293,16 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "critical",
+          "value": "critical"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": true,
@@ -1670,7 +2339,666 @@
             [
               {
                 "params": [
-                  "recovered"
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 45,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 43
+      },
+      "id": 46,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": null,
+      "decimals": null,
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 18,
+        "y": 43
+      },
+      "id": 47,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 46
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 48,
+      "interval": "5m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 46
+      },
+      "hiddenSeries": false,
+      "id": 49,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 51
+      },
+      "hiddenSeries": false,
+      "id": 50,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
                 ],
                 "type": "field"
               },
@@ -1709,7 +3037,6 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
           "format": "none",
           "label": null,
           "logBase": 1,
@@ -1718,8 +3045,2562 @@
           "show": true
         },
         {
-          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 51
+      },
+      "hiddenSeries": false,
+      "id": 51,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "deaths",
+          "value": "deaths"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
           "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 52,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 57
+      },
+      "id": 53,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": null,
+      "decimals": null,
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 18,
+        "y": 57
+      },
+      "id": 54,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 60
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 55,
+      "interval": "5m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 60
+      },
+      "hiddenSeries": false,
+      "id": 56,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 65
+      },
+      "hiddenSeries": false,
+      "id": 57,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 65
+      },
+      "hiddenSeries": false,
+      "id": 58,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "recovered",
+          "value": "recovered"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 70
+      },
+      "id": 59,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 71
+      },
+      "id": 60,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": null,
+      "decimals": null,
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 18,
+        "y": 71
+      },
+      "id": 61,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 74
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 62,
+      "interval": "5m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 74
+      },
+      "hiddenSeries": false,
+      "id": 63,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 79
+      },
+      "hiddenSeries": false,
+      "id": 64,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 79
+      },
+      "hiddenSeries": false,
+      "id": 65,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "tests",
+          "value": "tests"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 84
+      },
+      "id": 66,
+      "panels": [],
+      "repeat": null,
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 30,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "title": "$stat",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 85
+      },
+      "id": 67,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.1",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 5,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": null,
+      "decimals": null,
+      "fontSize": "80%",
+      "format": "none",
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 18,
+        "y": 85
+      },
+      "id": 68,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 18,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 88
+      },
+      "hiddenSeries": false,
+      "hideTimeOverride": false,
+      "id": 69,
+      "interval": "5m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 2,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"cases\") FROM \"covidapi\" WHERE $timeFilter GROUP BY time(1h), \"country\" fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 88
+      },
+      "hiddenSeries": false,
+      "id": 70,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 22,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 93
+      },
+      "hiddenSeries": false,
+      "id": 71,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 3,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 10,
+        "y": 93
+      },
+      "hiddenSeries": false,
+      "id": 72,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatIteration": 1587083125462,
+      "repeatPanelId": 23,
+      "repeatedByRow": true,
+      "scopedVars": {
+        "stat": {
+          "selected": true,
+          "text": "confirmed",
+          "value": "confirmed"
+        }
+      },
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_country",
+          "groupBy": [
+            {
+              "params": [
+                "$time_resolution"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "country"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "covidapi",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$stat"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              },
+              {
+                "params": [
+                  "$time_resolution"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "",
+      "tooltip": {
+        "shared": true,
+        "sort": 1,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "0",
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1745,8 +5626,8 @@
         "auto_min": "10s",
         "current": {
           "selected": false,
-          "text": "5m",
-          "value": "5m"
+          "text": "1d",
+          "value": "1d"
         },
         "hide": 0,
         "label": null,
@@ -1758,7 +5639,7 @@
             "value": "$__auto_interval_time_resolution"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -1768,7 +5649,7 @@
             "value": "1h"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1d",
             "value": "1d"
           },
@@ -1792,11 +5673,111 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "active + cases + critical + deaths + recovered + tests + confirmed",
+          "value": [
+            "active",
+            "cases",
+            "critical",
+            "deaths",
+            "recovered",
+            "tests",
+            "confirmed"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW FIELD KEYS",
+        "hide": 0,
+        "includeAll": true,
+        "index": -1,
+        "label": null,
+        "multi": true,
+        "name": "stat",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": true,
+            "text": "active",
+            "value": "active"
+          },
+          {
+            "selected": true,
+            "text": "cases",
+            "value": "cases"
+          },
+          {
+            "selected": false,
+            "text": "casesPerOneMillion",
+            "value": "casesPerOneMillion"
+          },
+          {
+            "selected": true,
+            "text": "critical",
+            "value": "critical"
+          },
+          {
+            "selected": true,
+            "text": "deaths",
+            "value": "deaths"
+          },
+          {
+            "selected": false,
+            "text": "deathsPerOneMillion",
+            "value": "deathsPerOneMillion"
+          },
+          {
+            "selected": true,
+            "text": "recovered",
+            "value": "recovered"
+          },
+          {
+            "selected": true,
+            "text": "tests",
+            "value": "tests"
+          },
+          {
+            "selected": false,
+            "text": "testsPerOneMillion",
+            "value": "testsPerOneMillion"
+          },
+          {
+            "selected": false,
+            "text": "todayCases",
+            "value": "todayCases"
+          },
+          {
+            "selected": false,
+            "text": "todayDeaths",
+            "value": "todayDeaths"
+          },
+          {
+            "selected": true,
+            "text": "confirmed",
+            "value": "confirmed"
+          }
+        ],
+        "query": "SHOW FIELD KEYS",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -1819,5 +5800,5 @@
   "variables": {
     "list": []
   },
-  "version": 21
+  "version": 30
 }

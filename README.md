@@ -4,8 +4,7 @@ This docker getup will allows you to monitor in real time the Corona virus infor
 - Install and upgrate docker and docker-compose
 - Clone this repo onto a folder with enough space to hold a database
 - Dependent on your skill set, here where where you either:
-    - If you are running linux, chmod -R 777 your project folder
-    - If you are running Windows, right click the project filder and grant all to everyone recursive
+    - Run chmod -R 777 your project folder. The folder, not folder contents.
     - For extra points, look at the docker-compose and create the accounts matching the used GID and UID
 - Go to that folder and type docker-compose up -d, or however you like to start your containers
 - Point your favorite browser over to http://localhost/dashboard and login as admin/admin and change that pass

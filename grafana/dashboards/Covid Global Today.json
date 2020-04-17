@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
+  "iteration": 1587080894145,
   "links": [],
   "panels": [
     {
@@ -56,7 +57,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -138,7 +139,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -189,7 +190,7 @@
       "fontSize": "80%",
       "format": "none",
       "gridPos": {
-        "h": 23,
+        "h": 20,
         "w": 6,
         "x": 12,
         "y": 0
@@ -274,7 +275,7 @@
       "fontSize": "80%",
       "format": "none",
       "gridPos": {
-        "h": 23,
+        "h": 20,
         "w": 6,
         "x": 18,
         "y": 0
@@ -355,7 +356,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 6,
         "x": 0,
         "y": 3
@@ -393,7 +394,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -482,7 +483,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 6,
         "x": 6,
         "y": 3
@@ -522,7 +523,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -611,10 +612,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 9,
         "w": 6,
         "x": 0,
-        "y": 13
+        "y": 11
       },
       "hiddenSeries": false,
       "id": 3,
@@ -649,7 +650,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -685,7 +686,7 @@
               },
               {
                 "params": [
-                  "5m"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -744,10 +745,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 6,
         "x": 6,
-        "y": 13
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 8,
@@ -782,7 +783,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$time_resolution"
               ],
               "type": "time"
             },
@@ -814,11 +815,11 @@
               },
               {
                 "params": [],
-                "type": "sum"
+                "type": "last"
               },
               {
                 "params": [
-                  "5m"
+                  "$time_resolution"
                 ],
                 "type": "derivative"
               }
@@ -851,7 +852,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -869,15 +870,65 @@
       }
     }
   ],
-  "refresh": "30s",
+  "refresh": "5m",
   "schemaVersion": 22,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "1h",
+          "value": [
+            "1h"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "time_resolution",
+        "options": [
+          {
+            "selected": true,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "2d",
+            "value": "2d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "15d",
+            "value": "15d"
+          }
+        ],
+        "query": "5m,1h,1d,2d,7d,15d",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -900,5 +951,5 @@
   "variables": {
     "list": []
   },
-  "version": 10
+  "version": 16
 }
