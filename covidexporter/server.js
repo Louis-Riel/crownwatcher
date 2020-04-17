@@ -166,7 +166,7 @@ export default class CovidExporter {
                 await this.postToInflux(ifm).then((result) => {
                     cnt += ifm.split('\n').length
                 })
-                mindt.setTime(mindt.getTime() - 300000)
+                mindt.setTime(mindt.getTime() - 86400000)
                 setImmediate(
                     function () {
                         this.importStat(mindt, stats, 0)
@@ -286,4 +286,4 @@ covidExplorer.bootStrapStats()
 covidExplorer.getTheStats()
 setInterval(function () {
     covidExplorer.getTheStats()
-}, 300000)
+}, 86400000)
