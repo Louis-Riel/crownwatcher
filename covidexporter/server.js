@@ -286,4 +286,4 @@ covidExplorer.bootStrapStats()
 covidExplorer.getTheStats()
 setInterval(function () {
     covidExplorer.getTheStats()
-}, 86400000)
+}, 3600000)
