@@ -3,10 +3,7 @@ This docker getup will allows you to monitor in real time the Corona virus infor
 
 - Install and upgrate docker and docker-compose
 - Clone this repo onto a folder with enough space to hold a database
-- Dependent on your skill set, here where where you either:
-    - Run chmod -R 777 your project folder. The folder, not folder contents.
-    - For extra points, look at the docker-compose and create the accounts matching the used GID and UID
-- Go to that folder and type docker-compose up -d, or however you like to start your containers
+- Go to that folder and type sudo ./startitup.sh. This will show a bunch of logging information. You can kill/close this window when you can log into the dashborad. If you cannot, then the problem is somewhere in that window, good luck woth that....
 - Point your favorite browser over to http://localhost/dashboard and login as admin/admin and change that pass
 - Create a new datasource of type InfluxDB, use http://influxdb:8086 for the URL and telegraf for the database name 
 
