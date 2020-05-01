@@ -349,4 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 grafana/serverconfig/grafana.db
+grafana/serverconfig/plugins
 influxdb/meta
