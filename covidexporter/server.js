@@ -93,11 +93,15 @@ export default class CovidExporter {
                 if (missingDays > 10) {
                     console.log("Done importing %d historical stats on %s", cnt, curidx)
                     resolve(cnt)
+                    this.getTheStats()
+                    setInterval(function () {
+                        this.getTheStats()
+                    }.bind(this), 3600000)
+
                     return;
                 }
                 mindt.setTime(mindt.getTime() - 86400000)
             }
-            console.log('loading %s',curidx)
             if ((mindt.getHours() == 0) && (mindt.getMinutes() == 0)) {
                 console.log("Processing %s", mindt)
             }
@@ -216,7 +220,7 @@ export default class CovidExporter {
                         JSON.parse(data).forEach(function (stat) {
                             var ifm = `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},latitude=${stat.coordinates.latitude},longitude=${stat.coordinates.longitude},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `.replace(/[a-z]+=,/g, '')
                             for (const metric in this.jhumetrics) {
-                                ifm += `${this.jhumetrics[metric]}=${stat[this.jhumetrics[metric]]},`
+                                ifm += `${this.jhumetrics[metric]}=${stat.stats[this.jhumetrics[metric]]},`
                             }
                             resolve(this.postToInflux(ifm.substr(0, ifm.length - 1)))
                         }.bind(this))
@@ -287,7 +291,3 @@ export default class CovidExporter {
 
 let covidExplorer = new CovidExporter()
 covidExplorer.bootStrapStats()
-covidExplorer.getTheStats()
-setInterval(function () {
-    covidExplorer.getTheStats()
-}, 3600000)
