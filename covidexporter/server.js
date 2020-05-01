@@ -21,25 +21,37 @@ export default class CovidExporter {
                 headers: {
                     'cache-control': 'no-cache'
                 }
-            }, (covidres) => {
+            }, (influxres) => {
                 let data = ''
                 console.log("Getting First Date")
-                covidres.setEncoding('utf8')
+                influxres.setEncoding('utf8')
 
-                covidres.on('error', function (err) {
+                influxres.on('error', function (err) {
                     console.log("Error during HTTP request")
                     console.log(err)
                 })
 
-                covidres.on('data', (stats) => {
+                influxres.on('data', (stats) => {
                     data += stats
                 })
-                covidres.on('end', () => {
+                influxres.on('end', () => {
                     var curstat = JSON.parse(data)
+                    var mindt
+
                     if (curstat.results[0].error) {
                         console.error("Cannot connect to influxdb")
                         process.exit(1)
                     }
+
+                    try {
+                        mindt = new Date(new Date(curstat.results[0].series[0].values[0][0]) - (8 * 60 * 1000))
+                        console.log("Stats started at %s %s", mindt, curstat.results[0].series[0].values[0][0])
+                    } catch (err) {
+                        mindt = new Date(new Date().toDateString())
+                        mindt.setTime(mindt.getTime() - (25 * 60 * 60 * 1000))
+                        console.log("Stats defaulted to yesterday %s", mindt)
+                    }
+
                     https.get({
                         host: 'corona.lmao.ninja',
                         path: '/v2/historical?lastdays=all',
@@ -61,19 +73,7 @@ export default class CovidExporter {
                         })
                         covidres.on('end', () => {
                             var stats = JSON.parse(data)
-                            var cnt = 0
-
-                            var mindt
-                            try {
-                                mindt = new Date(new Date(curstat.results[0].series[0].values[0][0]) - (8 * 60 * 1000))
-                                console.log("Stats started at %s %s", mindt, curstat.results[0].series[0].values[0][0])
-                            } catch (err) {
-                                mindt = new Date(new Date().toDateString())
-                                mindt.setTime(mindt.getTime() - (5 * 60 * 1000))
-                                console.log("Stats defaulted to yesterday %s", mindt)
-                            }
-
-                            this.importStat(mindt, stats, 0).then((cnt) => {
+                            this.importStat(mindt, stats, 0, 0).then((cnt) => {
                                 resolve(cnt)
                             })
                         })
@@ -83,16 +83,21 @@ export default class CovidExporter {
         })
     }
 
-    importStat(mindt, stats, cnt) {
+    importStat(mindt, stats, cnt,missingDays) {
         return new Promise(async (resolve, reject) => {
             var stat, tmpstat
             var ifm = ""
             var curidx = `${mindt.getMonth() + 1}/${mindt.getDate()}/${mindt.getFullYear() - 2000}`
             if (!stats[0].timeline.cases[curidx]) {
-                console.log("Done importing %d historical stats on %s", cnt, curidx)
-                resolve(cnt)
-                return;
+                missingDays+=1
+                if (missingDays > 10) {
+                    console.log("Done importing %d historical stats on %s", cnt, curidx)
+                    resolve(cnt)
+                    return;
+                }
+                mindt.setTime(mindt.getTime() - 86400000)
             }
+            console.log('loading %s',curidx)
             if ((mindt.getHours() == 0) && (mindt.getMinutes() == 0)) {
                 console.log("Processing %s", mindt)
             }
@@ -117,9 +122,12 @@ export default class CovidExporter {
                         .replace(/^UK$/, 'United_Kingdom')} `.replace(/[a-z]+=,/g, '')
                     for (const metric in this.jhuhmetrics) {
                         if (this.jhuhmetrics[metric] == "cases") {
-                            ifm += `confirmed=${stat.timeline.cases[curidx]}`
-                        }
-                        else {
+                            if (Number.isNaN(stat.timeline.cases[curidx])) {
+                                ifm += "confirmed=0"
+                            } else {
+                                ifm += `confirmed=${stat.timeline.cases[curidx]}`
+                            }
+                        } else {
                             ifm += `${this.jhuhmetrics[metric]}=${stat.timeline[this.jhuhmetrics[metric]][curidx]}`
                         }
                         if (metric < this.jhuhmetrics.length - 1) {
@@ -169,7 +177,7 @@ export default class CovidExporter {
                 mindt.setTime(mindt.getTime() - 86400000)
                 setImmediate(
                     function () {
-                        this.importStat(mindt, stats, 0)
+                        this.importStat(mindt, stats, cnt, missingDays)
                     }.bind(this)
                 )
                 resolve(cnt)
@@ -208,9 +216,7 @@ export default class CovidExporter {
                         JSON.parse(data).forEach(function (stat) {
                             var ifm = `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},latitude=${stat.coordinates.latitude},longitude=${stat.coordinates.longitude},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `.replace(/[a-z]+=,/g, '')
                             for (const metric in this.jhumetrics) {
-                                if (stat.stats[this.jhumetrics[metric]] != undefined) {
-                                    ifm += `${this.jhumetrics[metric]}=${stat.stats[this.jhumetrics[metric]]},`
-                                }
+                                ifm += `${this.jhumetrics[metric]}=${stat[this.jhumetrics[metric]]},`
                             }
                             resolve(this.postToInflux(ifm.substr(0, ifm.length - 1)))
                         }.bind(this))
@@ -243,9 +249,7 @@ export default class CovidExporter {
                         JSON.parse(data).forEach(function (stat) {
                             var ifm = `covidapi,generation=19,latitude=${stat.countryInfo.lat},longitude=${stat.countryInfo.long},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `
                             for (const metric in this.covidapitmetrics) {
-                                if (stat[this.covidapitmetrics[metric]] != undefined) {
-                                    ifm += `${this.covidapitmetrics[metric]}=${stat[this.covidapitmetrics[metric]]},`
-                                }
+                                ifm += `${this.covidapitmetrics[metric]}=${stat[this.covidapitmetrics[metric]]},`
                             }
                             resolve(this.postToInflux(ifm.substr(0, ifm.length - 1)))
                         }.bind(this))
@@ -275,7 +279,7 @@ export default class CovidExporter {
                 }
                 resolve(statres.statusCode)
             })
-            req.write(metric)
+            req.write(metric.replace(/undefined/g,"0"))
             req.end()
         })
     }
