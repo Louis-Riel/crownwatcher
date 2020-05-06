@@ -9,11 +9,6 @@ This docker getup will allows you to monitor in real time the Corona virus infor
 ![](images/configinfluxdb.png)
 - Close your browser window
 - Go to the terminal you ran the standitup.sh script on, and hit ctrl+c to stop the logging
-- Run this to get the pie chart control installed in Grafana
-``` bash
-sudo docker exec -it dashboard grafana-cli plugins install grafana-piechart-panel
-sudo docker-compose restart dashboard
-```
 - Log back into the dashboard http://localhost/dashboard
 - Click on Import 
 

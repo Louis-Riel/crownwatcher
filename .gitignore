@@ -351,3 +351,5 @@ MigrationBackup/
 grafana/serverconfig/grafana.db
 grafana/serverconfig/plugins
 influxdb/meta
+influxdb/wal
+influxdb/data
