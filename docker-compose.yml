@@ -65,29 +65,29 @@ services:
       - INFLUXDB_DB=telegraf
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./influxdb:/var/lib/influxdb
+      - /srv/influxdb:/var/lib/influxdb
     networks:
       - influxdb
 
-#  telegraf:
-#    image: telegraf:latest
-#    user: "20400:967"   #967 docker group
-#    restart: unless-stopped
-#    container_name: telegraf
-#    cap_add:
-#      - SYS_TIME
-#    environment: 
-#      - OST_PROC=/host/proc
-#    depends_on:
-#      - influxdb
-#    links:
-#      - influxdb
-#    volumes:
-#      - ./system/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /proc:/host/proc:ro
-#    networks:
-#      - influxdb
+  telegraf:
+    image: telegraf:latest
+    user: "20400:967"   #967 docker group
+    restart: unless-stopped
+    container_name: telegraf
+    cap_add:
+      - SYS_TIME
+    environment: 
+      - OST_PROC=/host/proc
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    volumes:
+      - ./system/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/host/proc:ro
+    networks:
+      - influxdb
 
 networks:
   grafana:
