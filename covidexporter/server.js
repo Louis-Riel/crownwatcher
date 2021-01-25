@@ -3,16 +3,40 @@
 
 import http from 'http'
 import https from 'https'
+import { resolve } from 'path'
 
 export default class CovidExporter {
     constructor() {
         this.jhumetrics = ['confirmed', 'deaths', 'recovered']
         this.covidapitmetrics = ["cases", "todayCases", "deaths", "todayDeaths", "recovered", "active",
-            "critical", "casesPerOneMillion", "deathsPerOneMillion", "tests", "testsPerOneMillion"]
+            "critical", "casesPerOneMillion", "deathsPerOneMillion", "tests", "testsPerOneMillion"
+        ]
         this.jhuhmetrics = ["cases", "deaths", "recovered"]
+        console.log("Getting stats info...")
+        https.get({
+            host: 'disease.sh',
+            path: '/v3/covid-19/all',
+            headers: {
+                'cache-control': 'no-cache'
+            }
+        }, (statReq) => {
+            let data = ''
+            statReq.setEncoding('utf8')
+            statReq.on('error', err => console.error(err));
+            statReq.on('data', (stats) => data += stats);
+            statReq.on('end', () => {
+                this.covidapitmetrics = Object.keys(JSON.parse(data))
+                    .filter(field => field != "updated" && field != "affectedCountries");
+                covidExplorer.bootStrapStats();
+            });
+        }).on("error", err => console.error(err))
     }
 
     bootStrapStats() {
+        this.getCurMinDt().then(mindt => this.fetchHistoricals(mindt));
+    }
+
+    getCurMinDt() {
         return new Promise((resolve, reject) => {
             http.get({
                 host: 'influxdb',
@@ -26,14 +50,8 @@ export default class CovidExporter {
                 console.log("Getting First Date")
                 influxres.setEncoding('utf8')
 
-                influxres.on('error', function (err) {
-                    console.log("Error during HTTP request")
-                    console.log(err)
-                })
-
-                influxres.on('data', (stats) => {
-                    data += stats
-                })
+                influxres.on('error', reject);
+                influxres.on('data', stats => data += stats);
                 influxres.on('end', () => {
                     var curstat = JSON.parse(data)
                     var mindt
@@ -51,216 +69,192 @@ export default class CovidExporter {
                         mindt.setTime(mindt.getTime() - (25 * 60 * 60 * 1000))
                         console.log("Stats defaulted to yesterday %s", mindt)
                     }
-
-                    https.get({
-                        host: 'corona.lmao.ninja',
-                        path: '/v2/historical?lastdays=all',
-                        headers: {
-                            'cache-control': 'no-cache'
-                        }
-                    }, (covidres) => {
-                        let data = ''
-                        covidres.setEncoding('utf8')
-                        console.log("Getting corona jhu Historical Stats")
-
-                        covidres.on('error', function (err) {
-                            console.log("Error during HTTP request")
-                            console.log(err)
-                        })
-
-                        covidres.on('data', (stats) => {
-                            data += stats
-                        })
-                        covidres.on('end', () => {
-                            var stats = JSON.parse(data)
-                            this.importStat(mindt, stats, 0, 0).then((cnt) => {
-                                resolve(cnt)
-                            })
-                        })
-                    }).end()
+                    resolve(mindt);
                 })
             })
-        })
+        });
     }
 
-    importStat(mindt, stats, cnt,missingDays) {
-        return new Promise(async (resolve, reject) => {
-            var stat, tmpstat
-            var ifm = ""
-            var curidx = `${mindt.getMonth() + 1}/${mindt.getDate()}/${mindt.getFullYear() - 2000}`
-            if (!stats[0].timeline.cases[curidx]) {
-                missingDays+=1
+    fetchHistoricals(statDt) {
+        console.log(`Getting historical from ${statDt}`);
+        https.get({
+            host: 'disease.sh',
+            path: '/v3/covid-19/historical?lastdays=all',
+            headers: {
+                'cache-control': 'no-cache'
+            }
+        }, function(covidreq) {
+            let data = ''
+            covidreq.setEncoding('utf8')
+            console.log("Getting corona jhu Historical Stats")
+
+
+            covidreq.on('error', err => reject(err));
+            covidreq.on('data', stats => data += stats);
+            covidreq.on('end', () => { this.importStat(statDt, JSON.parse(data), 0) });
+        }.bind(this));
+    }
+
+    importStat(statDt, stats, missingDays) {
+        return new Promise(async(resolve, reject) => {
+            if (statDt == null) {
+                reject({ "error": "Missing stat date" });
+                return;
+            }
+            var curidx = `${statDt.getMonth() + 1}/${statDt.getDate()}/${statDt.getFullYear() - 2000}`
+            if (stats[0].timeline.cases[curidx] === undefined) {
+                missingDays += 1
                 if (missingDays > 10) {
-                    console.log("Done importing %d historical stats on %s", cnt, curidx)
-                    resolve(cnt)
+                    console.log("Done importing historical stats on %s", curidx);
+                    resolve(0)
                     this.getTheStats()
-                    setInterval(function () {
+                    setInterval(function() {
                         this.getTheStats()
                     }.bind(this), 3600000)
 
                     return;
                 }
-                mindt.setTime(mindt.getTime() - 86400000)
             }
-            if ((mindt.getHours() == 0) && (mindt.getMinutes() == 0)) {
-                console.log("Processing %s", mindt)
+            if ((statDt.getHours() == 0) && (statDt.getMinutes() == 0)) {
+                console.log("Processing %s", statDt)
             }
 
             try {
-                for (const statidx in stats) {
-                    stat = stats[statidx]
-                    if (!stat.province) {
-                        var skipit = false
-                        for (const statidx in stats) {
-                            tmpstat = stats[statidx]
-                            skipit |= tmpstat.country == stat.country && stat.province && stat.province != ""
-                            if (skipit)
-                                continue
-                        }
-                        if (skipit)
-                            continue
-                    }
 
-                    ifm += `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')
-                        .replace(/^USA$/, 'US')
-                        .replace(/^UK$/, 'United_Kingdom')} `.replace(/[a-z]+=,/g, '')
-                    for (const metric in this.jhuhmetrics) {
-                        if (this.jhuhmetrics[metric] == "cases") {
-                            if (Number.isNaN(stat.timeline.cases[curidx])) {
-                                ifm += "confirmed=0"
-                            } else {
-                                ifm += `confirmed=${stat.timeline.cases[curidx]}`
-                            }
-                        } else {
-                            ifm += `${this.jhuhmetrics[metric]}=${stat.timeline[this.jhuhmetrics[metric]][curidx]}`
-                        }
-                        if (metric < this.jhuhmetrics.length - 1) {
-                            ifm += ","
-                        } else {
-                            ifm += ` ${mindt.getTime()}000000\n`
-                        }
-                    }
-                }
-                await this.postToInflux(ifm).then((result) => {
-                    cnt += ifm.split('\n').length
-                })
-                ifm = ""
-                var countryStats = {}
-                for (const statidx in stats) {
-                    stat = stats[statidx]
-                    if (!countryStats[stat.country]) {
-                        countryStats[stat.country] = { country: stat.country }
-                        for (const metric in this.covidapitmetrics) {
-                            countryStats[stat.country][this.covidapitmetrics[metric]] = 0
-                        }
-                    }
+                if (stats[0].timeline.cases[curidx] !== undefined) {
+                    await this.postToInflux(
+                        stats.filter(stat => stat.province ||
+                            stats.some(tmpstat => tmpstat.country == stat.country &&
+                                stat.province &&
+                                stat.province != ""))
+                        .map(stat => this.getDatedInfluxRecordRequest(stat, curidx, statDt))
+                        .join("\n"));
 
-                    for (const metric in this.covidapitmetrics) {
-                        if (stat.timeline[this.covidapitmetrics[metric]]) {
-                            countryStats[stat.country][this.covidapitmetrics[metric]] += Number(stat.timeline[this.covidapitmetrics[metric]][curidx])
-                        }
-                    }
+                    await this.postToInflux(
+                        this.getCountryStats(stats, curidx)
+                        .map(stat => this.getInfluxCountryRequest(stat, statDt))
+                        .join("\n"));
                 }
-                var msg = ""
-                for (const statidx in countryStats) {
-                    stat = countryStats[statidx]
-                    msg = `covidapi,generation=19,country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `
-                    for (const metric in this.covidapitmetrics) {
-                        msg += `${this.covidapitmetrics[metric]}=${stat[this.covidapitmetrics[metric]]}`
-                        if (metric < this.covidapitmetrics.length - 1) {
-                            msg += ","
-                        } else {
-                            msg += ` ${mindt.getTime()}000000`
-                        }
-                    }
-                    ifm += msg + "\n"
-                }
-                await this.postToInflux(ifm).then((result) => {
-                    cnt += ifm.split('\n').length
-                })
-                mindt.setTime(mindt.getTime() - 86400000)
+                statDt.setTime(statDt.getTime() - 86400000);
                 setImmediate(
-                    function () {
-                        this.importStat(mindt, stats, cnt, missingDays)
+                    function() {
+                        this.importStat(statDt, stats, missingDays)
                     }.bind(this)
                 )
-                resolve(cnt)
-            }
-            catch (err) {
+                resolve(0);
+            } catch (err) {
                 console.log(err)
                 reject(err)
             }
         })
     }
 
+    getInfluxCountryRequest(stat, statDt) {
+        return `covidapi,generation=19,country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} ` +
+            this.covidapitmetrics.map(metric => `${metric}=${stat[metric]}`)
+            .join(",") + ` ${statDt.getTime()}000000`;
+    }
+
+    getCountryStats(stats, curidx) {
+        return stats.reduce((ret, stat, idx) => {
+            var countryStats;
+            if (idx == 1) {
+                countryStats = { country: ret.country };
+                this.covidapitmetrics.forEach(metric => {
+                    countryStats[metric] = 0
+                    if (ret.timeline[this.covidapitmetrics[metric]]) {
+                        countryStats[ret.country][metric] += Number(ret.timeline[metric][curidx])
+                    }
+                });
+                ret = [];
+                ret.push(countryStats);
+            }
+            countryStats = ret.find(cstat => cstat.country == stat.country);
+            if (!countryStats) {
+                countryStats = { country: stat.country };
+                this.covidapitmetrics.forEach(metric => countryStats[metric] = 0);
+                ret.push(countryStats);
+            }
+            this.covidapitmetrics.forEach(metric => {
+                if (stat.timeline[this.covidapitmetrics[metric]]) {
+                    countryStats[stat.country][metric] += Number(stat.timeline[metric][curidx])
+                }
+            });
+            return ret;
+        });
+    }
+
+    getDatedInfluxRecordRequest(stat, curidx, statDt) {
+        return `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')
+            .replace(/^USA$/, 'US')
+            .replace(/^UK$/, 'United_Kingdom')} `.replace(/[a-z]+=,/g, '') +
+            this.jhuhmetrics.map(metric => this.getInfluxMetric(metric, stat, curidx)).join(",") + ` ${statDt.getTime()}000000\n`;
+    }
+
+    getInfluxMetric(metric, stat, curidx) {
+        if (metric == "cases") {
+            metric = "confirmed";
+        }
+        return `${metric}=${Number.isNaN(stat.timeline.cases[curidx])?0:stat.timeline.cases[curidx]}`;
+    }
+
     getTheStats() {
         return Promise.all([
-            new Promise((resolve, reject) => {
-                https.get({
-                    host: 'corona.lmao.ninja',
-                    path: '/v2/jhucsse',
-                    headers: {
-                        'cache-control': 'no-cache'
-                    }
-                }, (covidres) => {
-                    let data = ''
-                    console.log("Getting corona api Stats")
-                    covidres.setEncoding('utf8')
+            this.getApiStats(),
+            this.getJHUStats()
+        ]);
+    }
 
-                    covidres.on('error', function (err) {
-                        console.log("Error during HTTP request")
-                        console.log(err)
-                    })
+    getJHUStats() {
+        return new Promise((resolve, reject) => {
+            https.get({
+                host: 'disease.sh',
+                path: '/v3/covid-19/countries',
+                headers: {
+                    'cache-control': 'no-cache'
+                }
+            }, (covidres) => {
+                let data = ''
+                covidres.setEncoding('utf8')
+                console.log("Getting corona jhu Stats")
 
-                    covidres.on('data', (stats) => {
-                        data += stats
-                    })
-                    covidres.on('end', () => {
-                        console.log("Done getting corona jhu Stats")
-                        JSON.parse(data).forEach(function (stat) {
-                            var ifm = `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},latitude=${stat.coordinates.latitude},longitude=${stat.coordinates.longitude},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `.replace(/[a-z]+=,/g, '')
-                            for (const metric in this.jhumetrics) {
-                                ifm += `${this.jhumetrics[metric]}=${stat.stats[this.jhumetrics[metric]]},`
-                            }
-                            resolve(this.postToInflux(ifm.substr(0, ifm.length - 1)))
-                        }.bind(this))
-                    })
-                })
-            }),
-            new Promise((resolve, reject) => {
-                https.get({
-                    host: 'corona.lmao.ninja',
-                    path: '/v2/countries',
-                    headers: {
-                        'cache-control': 'no-cache'
-                    }
-                }, (covidres) => {
-                    let data = ''
-                    covidres.setEncoding('utf8')
-                    console.log("Getting corona jhu Stats")
+                covidres.on('error', err => reject(err));
+                covidres.on('data', stats => data += stats);
+                covidres.on('end', () => {
+                    JSON.parse(data).forEach(stat => this.postToInflux(`covidapi,generation=19,latitude=${stat.countryInfo.lat},longitude=${stat.countryInfo.long},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} ` +
+                        this.covidapitmetrics.map(metric => `${metric}=${stat[metric]}`).join(",")));
+                    console.log("Done getting corona api Stats")
+                    resolve();
+                });
+            })
+        })
+    }
 
-                    covidres.on('error', function (err) {
-                        console.log("Error during HTTP request")
-                        console.log(err)
-                    })
+    getApiStats() {
+        return new Promise((resolve, reject) => {
+            https.get({
+                host: 'disease.sh',
+                path: '/v3/covid-19/jhucsse',
+                headers: {
+                    'cache-control': 'no-cache'
+                }
+            }, (covidres) => {
+                let data = ''
+                console.log("Getting corona api Stats")
+                covidres.setEncoding('utf8')
 
-                    covidres.on('data', (stats) => {
-                        data += stats
-                    })
-
-                    covidres.on('end', () => {
-                        console.log("Done getting corona api Stats")
-                        JSON.parse(data).forEach(function (stat) {
-                            var ifm = `covidapi,generation=19,latitude=${stat.countryInfo.lat},longitude=${stat.countryInfo.long},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `
-                            for (const metric in this.covidapitmetrics) {
-                                ifm += `${this.covidapitmetrics[metric]}=${stat[this.covidapitmetrics[metric]]},`
-                            }
-                            resolve(this.postToInflux(ifm.substr(0, ifm.length - 1)))
-                        }.bind(this))
+                covidres.on('error', err => reject(err));
+                covidres.on('data', stats => data += stats);
+                covidres.on('end', () => {
+                    console.log("Done getting corona jhu Stats");
+                    JSON.parse(data).forEach(stat => {
+                        var ifm = `jhu_covid,generation=19,province=${stat.province ? stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_') : ""},latitude=${stat.coordinates.latitude},longitude=${stat.coordinates.longitude},country=${stat.country.replace(/[^a-zA-Z0-9]/g, '_')} `.replace(/[a-z]+=,/g, '')
+                        ifm += this.jhumetrics.map(metric => `${metric}=${stat.stats[metric]}`).join(",");
+                        resolve(this.postToInflux(ifm));
                     })
                 })
             })
-        ])
+        })
     }
 
     postToInflux(metric) {
@@ -283,11 +277,10 @@ export default class CovidExporter {
                 }
                 resolve(statres.statusCode)
             })
-            req.write(metric.replace(/undefined/g,"0"))
+            req.write(metric.replace(/undefined/g, "0"))
             req.end()
         })
     }
 }
 
 let covidExplorer = new CovidExporter()
-covidExplorer.bootStrapStats()
