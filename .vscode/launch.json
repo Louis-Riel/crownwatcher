@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Launch covid exporter",
+            "env": {
+                "INFLUX_BUCKET": "telegraf/autogen",
+                "INFLUX_HOST": "localhost",
+                "INFLUX_ORG": "none",
+                "INFLUX_PORT": "8086",
+                "AUTH_TOKEN":"Pk9yQWniP3OJbHQE0wuehj4mfIRP_owS6qTLTXLDF_q8vxrztv6zwMRMEKcD6JeWdF3xa0pf5pzd98lQamDwUA=="
+            },
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "./covidexporter/server.js"
+        }
+    ]
+}

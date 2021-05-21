@@ -10,6 +10,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node --experimental-modules  ./server.js"
     },
+    "dependencies": {
+        "@influxdata/influxdb-client": "*",
+        "@influxdata/influxdb-client-apis": "*"
+    },
     "keywords": [
         "covid19",
         "corona"
