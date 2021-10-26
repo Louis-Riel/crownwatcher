@@ -10,6 +10,9 @@
         "start": "node ./index.js"
     },
     "dependencies": {
+        "@influxdata/influxdb-client": "^1.14.0",
+        "@influxdata/influxdb-client-apis": "^1.14.0",
+        "import": "^0.0.6",
         "snmp-native": "^1.2.0"
     }
 }

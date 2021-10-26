@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "pwa-node",
             "request": "launch",
@@ -19,6 +20,24 @@
                 "<node_internals>/**"
             ],
             "program": "./covidexporter/server.js"
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Launch DDWRT Exporter",
+            "env": {
+                "INFLUX_HOST": "localhost",
+                "INFLUX_PORT": "8086",
+                "INFLUX_ORG": "none",
+                "INFLUX_BUCKET": "telegraf/autogen",
+                "DDWRT_ADDR": "192.168.1.1",
+                "PULL_PERIOD_MS": "10000",
+                "AUTH_TOKEN":"Pk9yQWniP3OJbHQE0wuehj4mfIRP_owS6qTLTXLDF_q8vxrztv6zwMRMEKcD6JeWdF3xa0pf5pzd98lQamDwUA=="
+            },
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "./system/ddwrtSnmpToStatsD/index.js"
         }
     ]
 }

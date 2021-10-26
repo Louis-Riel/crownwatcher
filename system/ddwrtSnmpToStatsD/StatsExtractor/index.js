@@ -1,8 +1,10 @@
 'use strict';
 import DDSnmpExporter from '../ddsnmp/index.js'
 import http from 'http'
-import { match } from 'assert';
-import { join } from 'path';
+import { env, stdout } from 'process'
+import { InfluxDB, flux, Point } from '@influxdata/influxdb-client'
+import { HealthAPI } from '@influxdata/influxdb-client-apis'
+import * as fs from 'fs'
 
 const stringConstructor = "".constructor;
 const arrayConstructor = [].constructor;
@@ -11,24 +13,40 @@ export default class StatsExtractor {
     constructor() {
         console.log("Starting...");
         this.ddwrt = new DDSnmpExporter();
-        this.getStats();
-        //this.ddwrt.getSystemStats().then(this.getClientStats.bind(this)).then(stats => console.log(JSON.stringify(stats, null, 2)));
+        console.log(`Connecting to http://${env.INFLUX_HOST}:${env.INFLUX_PORT}`)
+        let influxClient = new InfluxDB({ 'url': `http://${env.INFLUX_HOST}:${env.INFLUX_PORT}`, 'token': env.AUTH_TOKEN, 'timeout': 15000 })
+        let influxhealth = new HealthAPI(influxClient)
+        fs.readFile("/run/secrets/ddwrtauthkey","utf8",(err,data) => {
+            if (err)
+                console.error(err);
+            else{
+                this.ddwrtauthkey = data;
+                influxhealth.getHealth().then(res => {
+                    if (res.status == 'pass') {
+                        console.log("Connected")
+                        this.reader = influxClient.getQueryApi(env.INFLUX_ORG);
+                        this.writer = influxClient.getWriteApi(env.INFLUX_ORG, env.INFLUX_BUCKET, 'ns');
+                        this.getStats();
+                    } else {
+                        reject(res.status);
+                    }
+                });
+            }
+        });
     }
 
     getStats() {
-        this.ddwrt.getSystemStats().then(
-                this.getLanStats.bind(this))
-            .then(stats => Promise.all(
-                [
-                    this.postToInflux(this.getInfluxLine("ddwrtsystem", stats))
-                ].join(stats.networks.map(network => this.postToInflux(this.getInfluxLine("ddwrtnetwork", network))))
-            ).then(res => Promise.all(stats.networks.filter(network => network.ips != null)
-                .map(network =>
-                    network.ips.map(client =>
-                        this.postToInflux(this.getInfluxLine("ddwrtclient", client))
-                    )
-                )
-            ))).then(setTimeout(this.getStats.bind(this), process.env.PULL_PERIOD_MS));
+        this.ddwrt.getSystemStats()
+            .then(this.getLanStats.bind(this))
+            .then(this.getWanStats.bind(this))
+            .then(stats => stats.networks
+                .filter(network => network.ips != null)
+                .flatMap(network => network.ips.map(ip => this.toInluxPoint("ddwrtclient", ip)))
+                .concat(stats.networks.map(network => this.toInluxPoint("ddwrtnetwork", network)))
+                .concat(this.toInluxPoint("ddwrtsystem", stats)))
+            .then(stats => this.writer.writePoints(stats))
+            .then(stats =>
+                setTimeout(this.getStats.bind(this), parseInt(process.env.PULL_PERIOD_MS)))
     }
 
     getWanStats(stats) {
@@ -38,15 +56,18 @@ export default class StatsExtractor {
                     port: 80,
                     host: process.env.DDWRT_ADDR,
                     method: 'GET',
-                    path: `/Status_Wan.live.asp`,
+                    path: `/Status_Wireless.live.asp`,
                     agent: false,
                     headers: {
                         'cache-control': 'no-cache',
-                        'Authorization': `Basic YWRtaW46aW5mb1gyNWM`
+                        'Authorization': `Basic ${this.ddwrtauthkey}`
                     }
                 }, (res) => {
-                    res.on("data", data => this.GetIPClientStats(data, stats));
-                    res.on("end", () => resolve(stats));
+                    res.on("data", data =>
+                        this.GetIPClientStats(data.toString(), stats));
+                    //res.on("data", data => this.GetIPClientStats(data, stats));
+                    res.on("end", () =>
+                        resolve(stats));
                 }).on("error", reject)
             } catch (err) {
                 reject(err);
@@ -65,7 +86,7 @@ export default class StatsExtractor {
                     agent: false,
                     headers: {
                         'cache-control': 'no-cache',
-                        'Authorization': `Basic YWRtaW46aW5mb1gyNWM`
+                        'Authorization': `Basic ${this.ddwrtauthkey}`
                     }
                 }, (res) => {
                     res.on("data", data => this.GetIPClientStats(data, stats));
@@ -80,31 +101,67 @@ export default class StatsExtractor {
     GetIPClientStats(resp, stats) {
         var lines = String(resp).match(/{([^}]*)}/g);
         lines.filter(match => match.indexOf("dhcp_leases::") > 0)
-            .filter(match => match.substring(15).match(/('([^']*)','([^']*)','[^']*','[^']*','[^']*')/g)
-                .map(entry => {
-                    var entries = entry.match(/'([^']*)'/g).map(tmp => tmp.replaceAll("'", ""));
-                    stats.networks
+            .forEach(match =>
+                this.SplitidySplit(match, 5)
+                .map(entries => {
+                    return stats.networks
                         .filter(net => net.ips != null)
                         .filter(net => net.ips.filter(ip => ip.addr.join('.') == entries[1])
                             .forEach(net => {
                                 net["name"] = entries[0];
                                 net["mac"] = entries[2];
-                            }));
-                    return `${entries[0]}:${entries[1]}`;
+                            }))
+                        .map(net => `${entries[0]}:${entries[2]}`)
                 }));
         lines.filter(match => match.indexOf("arp_table::") > 0)
-            .filter(match => match.substring(15).match(/('([^']*)','([^']*)','[^']*','[^']*','[^']*')/g)
-                .map(entry => {
-                    var entries = entry.match(/'([^']*)'/g).map(tmp => tmp.replaceAll("'", ""));
+            .forEach(match =>
+                this.SplitidySplit(match, 5)
+                .map(entries => {
                     stats.networks
                         .filter(net => net.ips != null)
-                        .filter(net => net.ips.filter(ip => ip.addr.join('.') == entries[2])
+                        .filter(net => net.ips.filter(ip => ip.addr.join('.') == entries[1])
                             .forEach(net => {
-                                net["connections"] = entries[4];
-                                net["network"] = entries[0];
+                                net["connections"] = entries[3];
+                                net["network"] = entries[4];
                             }));
                     return `${entries[0]}:${entries[1]}`;
                 }));
+        lines.filter(match => match.indexOf("active_wireless::") > 0)
+            .forEach(match =>
+                this.SplitidySplit(match, 15)
+                .map(entries => {
+                    stats.networks
+                        .filter(net => net.ips != null)
+                        .filter(net => net.ips.filter(ip => ip.mac == entries[0])
+                            .forEach(net => {
+                                net["uptime"] = entries[3];
+                                net["txrate"] = entries[4].replaceAll("M", "");
+                                net["rxrate"] = entries[5].replaceAll("M", "");
+                                net["info"] = entries[6];
+                                net["signal"] = entries[7];
+                                net["noise"] = entries[8];
+                                net["snr"] = entries[9];
+                                net["quality"] = entries[10] / 10;
+                            }));
+                    return `${entries[0]}:${entries[1]}`;
+                }));
+    }
+
+    SplitidySplit(match, len) {
+        return match.substring(match.indexOf("::") + 2).match(/'([^']*)'/g)
+            .map(item => item.replaceAll("'", ""))
+            .reduce((ret, cur, idx) => {
+                if (ret.constructor !== arrayConstructor) {
+                    ret = [
+                        [ret, cur]
+                    ];
+                } else if (idx % len == 0) {
+                    ret.push([cur]);
+                } else {
+                    ret[ret.length - 1].push(cur);
+                }
+                return ret;
+            });
     }
 
     parseDhcpEntry(entry, stats) {
@@ -141,27 +198,38 @@ export default class StatsExtractor {
         });
     }
 
-    getInfluxLine(name, obj) {
-            var dt = Date.now();
-            return `${name}${Object.keys(obj).find(attr => this.isString(obj[attr])) != null ? 
-                        "," + Object.keys(obj)
-                                .filter(attr => this.isString(obj[attr]) && obj[attr] !== "")
-                                .map(attr => `${attr}=${obj[attr]}`)
-                                .join(',') + " "
-                    : " " } ${Object.keys(obj)
-                        .filter(attr => !this.isString(obj[attr]))
-                        .filter(attr => obj[attr] !== "")
-                        .map(attr => this.isArray(obj[attr]) ? `${attr}=${obj[attr].length}` : `${attr}=${obj[attr]}`)
-                        .join(',') + " "} ${dt}000000`;
+    toInluxPoint(name, obj) {
+        var pt = new Point(name) //.timestamp(Date.now());
+        try {
+            Object.keys(obj)
+                .filter(attr => obj[attr] != "")
+                .forEach(attr => {
+                    if (this.isIp(obj[attr])) {
+                        pt.tag(attr, obj[attr].join('.'))
+                    } else if (this.isString(obj[attr])) {
+                        pt.tag(attr, obj[attr])
+                    } else if (this.isArray(obj[attr])) {
+                        pt.floatField(attr, obj[attr].length)
+                    } else {
+                        pt.floatField(attr, obj[attr])
+                    }
+                })
+        } catch (ex) {
+            console.error(ex)
+        }
+        return pt;
     }
-        
-        
+
+
     isArray(obj) {
         return (obj.constructor === arrayConstructor);
     }
-        
-        
+
+    isIp(obj) {
+        return this.isArray(obj) && obj.filter(val => val >= 0 && val <= 255).length == 4
+    }
+
     isString(obj) {
-        return ((obj.constructor === stringConstructor) && isNaN(obj));
+        return ((obj.constructor === stringConstructor) && (isNaN(obj)));
     }
 }

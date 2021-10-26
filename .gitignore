@@ -353,3 +353,4 @@ grafana/serverconfig/plugins
 influxdb/meta
 influxdb/wal
 influxdb/data
+ddwrtauthkey

@@ -37,7 +37,7 @@ services:
       INFLUX_PORT: 8086
       INFLUX_ORG: none
       INFLUX_BUCKET: telegraf/autogen
-      AUTH_TOKEN: 
+      AUTH_TOKEN: yrcTkKl6fRkq4pbPDls7NChs3byFHzegObt-YvuVv6cTH3xgNbwDD10WX1nUr7L1do8AMGjMHys8-ic_feznMQ==
     depends_on:
       - influxdb
     volumes:
@@ -66,15 +66,8 @@ services:
     ports:
       - 8086:8086
     environment:
-      #- INFLUXDB_DATA_ENGINE=tsm1
       - INFLUXDB_REPORTING_DISABLED=false
       - INFLUXDB_DB=telegraf
-      #- DOCKER_INFLUXDB_INIT_MODE=upgrade
-      #- DOCKER_INFLUXDB_INIT_USERNAME=my-user
-      #- DOCKER_INFLUXDB_INIT_PASSWORD=my-password
-      #- DOCKER_INFLUXDB_INIT_ORG=my-org
-      #- DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
-      #- DOCKER_INFLUXDB_INIT_UPGRADE_V1_CONFIG=/root/influxdb/influxdb.conf
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /srv/influxdb:/var/lib/influxdb
@@ -84,19 +77,20 @@ services:
       - influxdb
 
   telegraf:
-    #build:
-    #  args:
-    #    UID: 965
-    #    GID: 1001
-    #    user: "sicko"
-    #  context: ./system/telegraf
-    image: telegraf:latest
+    build:
+      dockerfile: Dockerfile.nvidia
+      args:
+        UID: 965
+        GID: 1001
+        user: "sicko"
+      context: ./system/telegraf
+    #image: telegraf:latest
     user: "20400:967"   #967 docker group
     restart: unless-stopped
     container_name: telegraf
     runtime: nvidia
     environment:
-#      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_VISIBLE_DEVICES=all
       - OST_PROC=/host/proc
     command: telegraf
     cap_add:
@@ -105,8 +99,12 @@ services:
       - influxdb
     volumes:
       - ./system/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/host/proc:ro
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
     networks:
       - influxdb
 
@@ -121,16 +119,45 @@ services:
     restart: unless-stopped
     container_name: ddwrtExporter
     command: "npm start"
+    secrets:
+      - ddwrtauthkey
     environment:
-      - INFLUX_ADDR=influxdb
-      - INFLUX_DB=telegraf
-      - DDWRT_ADDR=192.168.1.1
-      - PULL_PERIOD_MS=10000
+      TZ: "Canada/Eastern"
+      NODE_ENV: production
+      INFLUX_HOST: influxdb
+      INFLUX_PORT: 8086
+      INFLUX_ORG: none
+      DDWRT_ADDR: "192.168.1.1"
+      INFLUX_BUCKET: telegraf/autogen
+      AUTH_TOKEN: Pk9yQWniP3OJbHQE0wuehj4mfIRP_owS6qTLTXLDF_q8vxrztv6zwMRMEKcD6JeWdF3xa0pf5pzd98lQamDwUA==
     depends_on:
       - influxdb
     networks:
       - influxdb
 
+  nodered:
+    build:
+      context: ./system/nodered
+    restart: unless-stopped
+    container_name: nodered
+    command: "npm add ./custom-nodes/logcatter; xnpm start"
+    ports:
+      - 1880:1880
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./system/nodered/nodereddata:/data
+      - noderedsshkeys:/usr/src/node-red/.ssh
+    networks:
+      - influxdb
+
+
 networks:
   grafana:
   influxdb:
+
+secrets:
+  ddwrtauthkey:
+    file: ./ddwrtauthkey
+
+volumes:
+  noderedsshkeys:

@@ -39,6 +39,7 @@ const sysStatsOid = [1, 3, 6, 1, 4, 1, 2021];
 
 export default class DDSnmpExporter {
     constructor() {
+        console.log(`Connecting to ddwrt @${process.env.DDWRT_ADDR}`)
         this.session = new snmp.Session({ host: process.env.DDWRT_ADDR });
     }
 
@@ -151,8 +152,8 @@ export default class DDSnmpExporter {
 
     getStatValue(stat, mapping) {
         var ret = stat.value;
-        if (mapping.name == "mac") {
-            ret = stat.valueHex;
+        if ((mapping.name == "mac") && (stat.valueHex !== "")) {
+            ret = stat.valueHex.replaceAll(/(..)/g,"$1:").substring(0,17);
         }
 
         return ret;

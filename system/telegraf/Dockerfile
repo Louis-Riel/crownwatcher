@@ -1,4 +1,5 @@
-FROM nvidia/cuda:11.4.1-runtime-ubuntu20.04
+FROM buildpack-deps:buster-curl
+LABEL maintainer mconcas@cern.ch
 
 # RUN apt-get update && apt-get install -y wget && wget https://dl.influxdata.com/telegraf/releases/telegraf_1.10.3-1_amd64.deb && dpkg -i telegraf_1.10.3-1_amd64.deb
 
@@ -15,7 +16,7 @@ RUN set -ex && \
         gpg --keyserver keyserver.pgp.com --recv-keys "$key" ; \
     done
 
-ENV TELEGRAF_VERSION 1.19.3
+ENV TELEGRAF_VERSION 1.19.0
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" && \
     case "${dpkgArch##*-}" in \
       amd64) ARCH='amd64';; \

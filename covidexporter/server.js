@@ -28,7 +28,7 @@ export default class CovidExporter {
                 this.writer = influxClient.getWriteApi(env.INFLUX_ORG, env.INFLUX_BUCKET, 'ns')
                 this.getCurMaxDt()
                     .then(maxdt => this.fetchHistoricals(maxdt))
-                    .then(res => this.fixBadData())
+                    //.then(res => this.fixBadData())
                     .catch(console.error)
             } else {
                 reject(res.status)
@@ -83,7 +83,7 @@ export default class CovidExporter {
                             res.push(lastIssue = { issue: "zeroed", start: lastIssue ? lastIssue.start : lastRec, end: theRow })
                                 //console.log("zeroed")
                                 //console.log(lastIssue)
-                        } else if ((lastRec._value > 0) && (Math.abs(theRow._value - lastRec._value) > Math.max(lastRec._value * 3, 10000))) {
+                        } else if ((lastRec._value > 0) && (Math.abs(theRow._value - lastRec._value) > Math.max(lastRec._value * 3, 20000))) {
                             res.push(lastIssue = { issue: "valuegap", start: lastRec, end: theRow })
                                 //console.log("valuegap")
                                 //console.log(lastIssue)
@@ -129,7 +129,7 @@ export default class CovidExporter {
     fixIssues(issues) {
         return new Promise((resolve, reject) => {
             try {
-                issues = issues.filter(issue => issue.issue == "vvvvvvaluegap")
+                issues = issues.filter(issue => issue.issue == "valuegap")
                     .map(issue => this.fixValueGap(issue))
                     .concat(
                         issues.filter(issue => issue.issue == "zeroed")
@@ -150,41 +150,29 @@ export default class CovidExporter {
                     .map(this.recordToPoint)
 
                 if (issues && issues.length) {
-                    this.writer.writePoints(
-                        //console.log(
-                        issues.reduce((ret, cur) => {
-                            var acc
-                            if (!Array.isArray(ret)) {
-                                acc = ret
-                                ret = [ret]
-                            } else {
-                                acc = ret[ret.length - 1]
-                            }
+                    var gi = issues.reduce((ret, cur) => {
+                        var acc
+                        if (!Array.isArray(ret)) {
+                            acc = ret
+                            ret = [ret]
+                        } else {
+                            acc = ret[ret.length - 1]
+                        }
 
-                            if ((this.compareProp(acc, cur, "name") == 0) &&
-                                (acc.time.getTime() == cur.time.getTime()) &&
-                                Object.keys(acc.tags).concat(Object.keys(cur.tags))
-                                .reduce((ret, cur) => {
-                                    var acc
-                                    if (typeof(ret) == "string") {
-                                        acc = ret
-                                        ret = [ret]
-                                    } else {
-                                        acc = ret[ret.length - 1]
-                                    }
-                                    if (ret[ret.length - 1].localeCompare(cur) != 0)
-                                        ret.push(acc)
-                                    return ret
-                                }).every(field => this.compareProp(acc.tags, cur.tags, field) == 0)) {
-                                Object.keys(cur.fields)
-                                    .filter(field => !Object.keys(acc.fields).some(f1 => f1 == field))
-                                    .forEach(field => acc.floatField(field, cur.fields[field]))
-                            } else {
-                                ret.push(cur)
-                                    //console.log(cur)
-                            }
-                            return ret
-                        }))
+                        if ((this.compareProp(acc, cur, "name") == 0) &&
+                            (acc.time.getTime() == cur.time.getTime()) &&
+                            Object.keys(acc.tags).concat(Object.keys(cur.tags)).filter((val, idx, arr) => arr.indexOf(val == idx))
+                            .every(field => this.compareProp(acc.tags, cur.tags, field) == 0)) {
+                            Object.keys(cur.fields)
+                                .filter(field => !Object.keys(acc.fields).some(f1 => f1 == field))
+                                .forEach(field => acc.floatField(field, cur.fields[field]))
+                        } else {
+                            ret.push(cur)
+                                //console.log(cur)
+                        }
+                        return ret
+                    })
+                    this.writer.writePoints(gi)
                 }
 
                 resolve()
@@ -221,7 +209,6 @@ export default class CovidExporter {
 
     fixValueGap(issue) {
         if ((issue.end._value > issue.start._value) || (issue.end._value < 0)) {
-            console.log(`${issue.end.country}/${issue.end.province}/${issue.end._field}(${issue.end._time}):${issue.end._value} <- ${issue.start._value}`)
             issue.end._value = issue.start._value
             return issue.end
         }
@@ -236,7 +223,7 @@ export default class CovidExporter {
                 |> range(start: -20d, stop: now())
                 |> filter(fn: (r) => r["_measurement"] == "covidapi")
                 |> filter(fn: (r) => r["_field"] == "deaths")`
-            var maxDt = null
+            var maxDt = new Date("2020-01-01")
             this.reader.queryRows(fluxQuery, {
                 next(row, tableMeta) {
                     var theRow = tableMeta.toObject(row)
