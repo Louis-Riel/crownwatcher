@@ -28,94 +28,11 @@ export default class CovidExporter {
                 this.writer = influxClient.getWriteApi(env.INFLUX_ORG, env.INFLUX_BUCKET, 'ns')
                 this.getCurMaxDt()
                     .then(maxdt => this.fetchHistoricals(maxdt))
-                    //.then(res => this.fixBadData())
                     .catch(console.error)
             } else {
                 reject(res.status)
             }
         })
-    }
-
-    fixBadData() {
-        return new Promise((resolve, reject) => {
-            var curDays = Math.floor((new Date() - new Date(2020, 1, 1)) / (1000 * 60 * 60 * 24))
-            curDays = this.fixBadDataBatch(curDays, resolve, reject)
-        })
-    }
-
-    fixBadDataBatch(curDays, resolve, reject, lastRec, lastIssue) {
-        if (curDays > 0) {
-            var dt = new Date()
-            dt.setDate(new Date().getDate() - curDays)
-            console.log(`Looking ${dt} back`)
-            const fluxQuery = flux `from(bucket: "${env.INFLUX_BUCKET}")
-                    |> range(start: -${curDays}d, stop: -${curDays > 50 ? curDays - 50 : 0}d)
-                    |> filter(fn: (r) => r["_measurement"] == "covidapi")
-                    |> sort(columns: ["_measurement", "coutry", "province", "_field", "_time"])`
-            let res = []
-            let that = this
-
-            this.reader.queryRows(fluxQuery, {
-                next(row, tableMeta) {
-                    var theRow = tableMeta.toObject(row)
-                        //if (theRow._value == 0) {
-                        //    console.log(theRow)
-                        //    console.log(lastRec)
-                        //}
-
-                    if ((lastRec != null) &&
-                        Object.keys(theRow).concat(Object.keys(lastRec))
-                        .reduce((ret, cur) => {
-                            var acc
-                            if (typeof(ret) == "string") {
-                                acc = ret
-                                ret = [ret]
-                            } else {
-                                acc = ret[ret.length - 1]
-                            }
-                            if (ret[ret.length - 1].localeCompare(cur) != 0)
-                                ret.push(acc)
-                            return ret
-                        })
-                        .filter(fld => !["table", "_start", "_stop", "_time", "_value", "_result"].some(fld2 => fld.localeCompare(fld2) == 0))
-                        .every(field => that.compareProp(theRow, lastRec, field) == 0)) {
-                        if (((lastRec._value > 1000) || (lastIssue && lastIssue.start._value)) && ((theRow._value || 0) == 0)) {
-                            res.push(lastIssue = { issue: "zeroed", start: lastIssue ? lastIssue.start : lastRec, end: theRow })
-                                //console.log("zeroed")
-                                //console.log(lastIssue)
-                        } else if ((lastRec._value > 0) && (Math.abs(theRow._value - lastRec._value) > Math.max(lastRec._value * 3, 20000))) {
-                            res.push(lastIssue = { issue: "valuegap", start: lastRec, end: theRow })
-                                //console.log("valuegap")
-                                //console.log(lastIssue)
-                        } else if ((new Date(theRow._time) - new Date(lastRec._time)) > (1000 * 60 * 60 * 24 * 2)) {
-                            res.push(lastIssue = { issue: "timegap", start: lastRec, end: theRow })
-                                //console.log("timegap")
-                                //console.log(lastIssue)
-                        } else {
-                            lastIssue = null
-                        }
-                    } else {
-                        lastIssue = null
-                    }
-                    lastRec = theRow
-                },
-                error(err) {
-                    console.error(err)
-                    reject(err.json)
-                },
-                complete() {
-                    resolve(that.fixIssues(res).then(res =>
-                        setImmediate(
-                            function() {
-                                that.fixBadDataBatch(curDays - 50, resolve, reject, lastRec, lastIssue)
-                            }.bind(that)
-                        )))
-                }
-            })
-
-        } else {
-            resolve()
-        }
     }
 
     compareProp(a, b, fld) {
@@ -124,97 +41,6 @@ export default class CovidExporter {
             return a[fld].localeCompare(b[fld])
 
         return a[fld] ? 1 : !b[fld] ? 0 : -1
-    }
-
-    fixIssues(issues) {
-        return new Promise((resolve, reject) => {
-            try {
-                issues = issues.filter(issue => issue.issue == "valuegap")
-                    .map(issue => this.fixValueGap(issue))
-                    .concat(
-                        issues.filter(issue => issue.issue == "zeroed")
-                        .map(issue => this.fixZeroGap(issue))
-                    )
-                    .filter(issue => issue)
-                    .sort((a, b) => {
-                        var ret = 0
-
-                        if (((ret = this.compareProp(a, b, "_measurement")) == 0) &&
-                            ((ret = this.compareProp(a, b, "country")) == 0) &&
-                            ((ret = this.compareProp(a, b, "province")) == 0) &&
-                            ((ret = this.compareProp(a, b, "_time")) == 0)) {
-                            return this.compareProp(a, b, "_field")
-                        }
-                        return ret
-                    })
-                    .map(this.recordToPoint)
-
-                if (issues && issues.length) {
-                    var gi = issues.reduce((ret, cur) => {
-                        var acc
-                        if (!Array.isArray(ret)) {
-                            acc = ret
-                            ret = [ret]
-                        } else {
-                            acc = ret[ret.length - 1]
-                        }
-
-                        if ((this.compareProp(acc, cur, "name") == 0) &&
-                            (acc.time.getTime() == cur.time.getTime()) &&
-                            Object.keys(acc.tags).concat(Object.keys(cur.tags)).filter((val, idx, arr) => arr.indexOf(val == idx))
-                            .every(field => this.compareProp(acc.tags, cur.tags, field) == 0)) {
-                            Object.keys(cur.fields)
-                                .filter(field => !Object.keys(acc.fields).some(f1 => f1 == field))
-                                .forEach(field => acc.floatField(field, cur.fields[field]))
-                        } else {
-                            ret.push(cur)
-                                //console.log(cur)
-                        }
-                        return ret
-                    })
-                    this.writer.writePoints(gi)
-                }
-
-                resolve()
-            } catch (ex) {
-                console.error(ex)
-                reject(ex)
-            }
-        })
-    }
-
-    recordToPoint(issue) {
-        var pt = new Point(issue._measurement)
-        Object.keys(issue).forEach(field => {
-            if (!field.startsWith("_") && (field != "result") && (field != "table")) {
-                pt.tag(field, issue[field]);
-            }
-        })
-        pt.floatField(issue._field, issue._value)
-        pt.timestamp(new Date(issue._time))
-
-        return pt;
-    }
-
-    fixZeroGap(issue) {
-        if (issue && issue.end && issue.start &&
-            (issue.end._value == 0) && (issue.start._value != 0)) {
-            issue.end._value = issue.start._value
-            return issue.end
-        }
-        console.warn(`weirdness is afoot`)
-        console.warn(issue)
-        return null
-    }
-
-    fixValueGap(issue) {
-        if ((issue.end._value > issue.start._value) || (issue.end._value < 0)) {
-            issue.end._value = issue.start._value
-            return issue.end
-        }
-        console.warn(`weirdness is afoot.`)
-        console.warn(issue)
-        return null
     }
 
     getCurMaxDt() {
@@ -352,8 +178,7 @@ export default class CovidExporter {
                 covidres.on('error', err => reject(err));
                 covidres.on('data', stats => data += stats);
                 covidres.on('end', () => {
-                    var dt
-                    this.writer.writePoints(
+                    resolve(this.writer.writePoints(
                         JSON.parse(data)
                         .map(stat => {
                             let pt = new Point("covidapi")
@@ -361,17 +186,15 @@ export default class CovidExporter {
                                 .tag("generation", "19")
                                 .tag("latitude", stat.countryInfo.lat)
                                 .tag("longitude", stat.countryInfo.long)
-                                .timestamp(dt = new Date(stat.updated))
+                                .timestamp(new Date(stat.updated))
                             Object.keys(stat)
                                 .filter(field => field != "updated" && field != "countryInfo")
                                 .filter(field => !isNaN(stat[field]) && stat[field] != "")
                                 .forEach(field => pt.floatField(field, stat[field]))
-                                //console.log(pt)
                             return pt
-                        }))
-                    console.log(`Done getting corona jhu Stats for ${dt}`)
-                    resolve();
-                });
+                        })
+                    ))
+                })
             })
         })
     }
@@ -392,8 +215,7 @@ export default class CovidExporter {
                 covidres.on('error', err => reject(err));
                 covidres.on('data', stats => data += stats);
                 covidres.on('end', () => {
-                    var dt
-                    this.writer.writePoints(
+                    resolve(this.writer.writePoints(
                         JSON.parse(data)
                         .filter(stat => stat.province)
                         .map(stat => {
@@ -404,15 +226,13 @@ export default class CovidExporter {
                                 .tag("province", stat.province.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_'))
                                 .tag("latitude", stat.coordinates.latitude)
                                 .tag("longitude", stat.coordinates.longitude)
-                                .timestamp(dt = new Date(stat.updatedAt))
+                                .timestamp(new Date(stat.updatedAt))
                             Object.keys(stat.stats)
                                 .filter(field => !isNaN(stat.stats[field]) && stat.stats[field] != null)
                                 .forEach(field => pt.floatField(field, stat.stats[field]))
-
-                            //console.log(pt)
                             return pt
-                        }))
-                    console.log(`Done getting corona api Stats for ${dt}`);
+                        })
+                    ))
                 })
             })
         })
