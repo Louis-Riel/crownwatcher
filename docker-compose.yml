@@ -26,7 +26,7 @@ services:
     build:
       args:
         UID: 965
-        GID: 1001
+        GID: 8008
         user: "sicko"
       context: ./covidexporter
     container_name: covid_exporter
@@ -55,7 +55,7 @@ services:
 
   influxdb:
     image: influxdb:latest
-    user: 964:1001
+    user: 964:8008
     healthcheck:
       test: [ "CMD-SHELL", "curl -s http://influxdb:8086/metrics | wc -c"  ]
       interval: 30s
@@ -81,7 +81,7 @@ services:
       dockerfile: Dockerfile.nvidia
       args:
         UID: 965
-        GID: 1001
+        GID: 8008
         user: "sicko"
       context: ./system/telegraf
     #image: telegraf:latest
@@ -112,7 +112,7 @@ services:
     build:
       args:
         UID: 965
-        GID: 1001
+        GID: 8008
         user: "sicko"
       context: ./system/ddwrtSnmpToStatsD
     user: "20400:967"   #967 docker group
