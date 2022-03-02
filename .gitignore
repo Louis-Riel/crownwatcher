@@ -354,3 +354,5 @@ influxdb/meta
 influxdb/wal
 influxdb/data
 ddwrtauthkey
+influxdb2
+influxdb2cfg
