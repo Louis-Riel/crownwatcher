@@ -72,7 +72,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/influxdb:/var/lib/influxdb
       - /srv/influxdb2:/var/lib/influxdb2
-      - /srv/influxdb2cfg:/etc/influxdb2
     networks:
       - influxdb
 
