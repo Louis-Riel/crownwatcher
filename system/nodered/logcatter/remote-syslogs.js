@@ -13,32 +13,39 @@ class SysLog {
         this.red.nodes.createNode(this.node, config);
         this.ssh = new NodeSSH();
         if (!this.hasPrivKey()) {
-            this.generateSshKeys().then(res => this.connect());
+            this.generateSshKeys().then(this.connect.bind(this));
         } else {
             this.connect();
         }
     }
 
     connect() {
-        this.node.status({ fill: "yellow", shape: "ring", text: `Connecting to ${this.config.address}` });
+        this.node.status({ fill: "yellow", shape: "ring", text: `Connecting to ${this.config.address}:${this.config.port}` });
         this.ssh.connect({
             host: this.config.address,
             port: this.config.port,
-            username: 'root',
+            username: this.config.username,
             privateKey: `${this.config.sshkeyfolder}/id_rsa`
-        }).then(() => {
-            this.node.status({ fill: "green", shape: "dot", text: `Connected` });
-            var node = this.node;
-            this.ssh.exec("tail", ["-f", "messages"], {
-                cwd: "/var/log",
-                onStdout(stdout) { stdout.toString().split('\n').forEach(logln => node.send({ payload: logln })) },
-                onStderr(err) { node.status({ fill: "yellow", shape: "ring", text: err }) }
-            });
-        }).catch(err => {
-            this.node.status({ fill: "yellow", shape: "ring", text: err });
-            this.node.error(err);
-            setTimeout(() => this.connect(), 1000);
-        });
+        }).then(this.onConnected.bind(this))
+          .catch(err => this.node.error(`Connect error ${JSON.stringify(err)}`));
+    }
+
+    onError(err) {
+        this.node.status({ fill: "yellow", shape: "ring", text: `Error connecting to ${this.config.address}:${this.config.port} ${err}` });
+        this.node.error(`OnError:${JSON.stringify(err)}`);
+        setTimeout(this.connect.bind(this), 1000);
+    }
+
+    onConnected() {
+        this.node.log(`Connected to ${this.config.address}`);
+        this.node.status({ fill: "green", shape: "dot", text: `Connected` });
+        var node = this.node;
+        this.ssh.exec("tail", ["-f", "messages"], {
+            cwd: "/var/log",
+            onStdout(stdout) { stdout.toString().split('\n').forEach(logln => node.send({ payload: logln })); },
+            onStderr(err) { node.status({ fill: "yellow", shape: "ring", text: err }); }
+        }).then(() => setTimeout(this.connect.bind(this), 1000))
+          .catch(err => this.node.error(`onConnect error ${JSON.stringify(err)}`));
     }
 
     generateSshKeys() {
@@ -59,8 +66,7 @@ class SysLog {
                     this.node.status({ fill: "red", shape: "ring", text: err });
                     reject(err);
                 } else {
-                    this.node.status({ fill: "yellow", shape: "ring", text: `SSH keys generated, please propogate them` });
-                    resolve(this.config.sshkeyfolder);
+                    resolve(this.node.status({ fill: "yellow", shape: "ring", text: `SSH keys generated, please propogate them` }));
                 }
             }.bind(this));
         });

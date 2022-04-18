@@ -103,9 +103,7 @@ export default class CovidExporter {
                 if (missingDays > 10) {
                     console.log("Done importing historical stats on %s", curidx);
                     this.getTheStats()
-                    setInterval(function() {
-                        this.getTheStats()
-                    }, 3600000)
+                    setInterval(this.getTheStats.bind(this), 3600000)
                     resolve(0);
                     return;
                 }
