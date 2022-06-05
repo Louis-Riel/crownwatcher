@@ -22,6 +22,19 @@ services:
       - grafana
       - influxdb
 
+  alertmanager:
+    image: prom/alertmanager:v0.24.0
+    ports:
+      - 9093:9093
+    volumes:
+      - ./system/alertmanager/:/etc/alertmanager/
+    restart: always
+    command:
+      - '-config.file=/etc/alertmanager/config.yml'
+      - '-storage.path=/alertmanager'
+    deploy:
+      mode: global
+
   covid_exporter:
     build:
       args:
@@ -146,6 +159,7 @@ services:
       - 1880:1880
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /etc/hosts:/etc/hosts:ro
       - ./system/nodered/nodereddata:/data
       - noderedsshkeys:/usr/src/node-red/.ssh
     networks:
